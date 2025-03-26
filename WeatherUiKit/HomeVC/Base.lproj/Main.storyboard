@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Vc-->
+        <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeVc" id="BYZ-38-t0r" customClass="HomeVc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVc" id="BYZ-38-t0r" customClass="HomeVC" customModule="WeatherUiKit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +266,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Uu5-qR-bXg"/>
                     <connections>
-                        <outlet property="tableView" destination="V6C-Xw-jKy" id="OWX-xi-fyw"/>
+                        <outlet property="tableView" destination="V6C-Xw-jKy" id="kYx-tw-bzo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

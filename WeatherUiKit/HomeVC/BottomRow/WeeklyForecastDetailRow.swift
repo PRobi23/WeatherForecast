@@ -16,7 +16,7 @@ class WeeklyForecastDetailRow: UITableViewCell {
     @IBOutlet private var img: UIImageView!
     @IBOutlet private var dayLabel: UILabel!
     
-    override  awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 

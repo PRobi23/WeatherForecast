@@ -10,10 +10,17 @@ import UIKit
 class HomeVC: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+    private var currentWeather: CurrentWeather?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        Api.shared.fetchCurrentWeather { weather in
+            guard let weather else { return }
+            self.currentWeather  = weather
+            self.tableView.reloadData()
+        }
     }
     
     private func setupTableView(){
@@ -31,6 +38,7 @@ extension HomeVC: UITableViewDataSource {
         switch row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeTopRow.id) as! HomeTopRow
+                cell.configure(currentWeather)
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeCarouselRow.id) as! HomeCarouselRow
