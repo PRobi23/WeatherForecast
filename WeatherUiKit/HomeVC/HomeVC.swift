@@ -11,15 +11,39 @@ class HomeVC: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     private var currentWeather: CurrentWeather?
+    private var weeklyForecast: WeeklyForecast?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         
-        Api.shared.fetchCurrentWeather { weather in
+        /*
+        Api.shared.fetchCurrentWeatherLive { weather in
             guard let weather else { return }
-            self.currentWeather  = weather
-            self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.currentWeather  = weather
+                self?.tableView.reloadData()
+            }
+        }
+         */
+        
+        Api.shared.fetchSample(CurrentWeather.self) { weather in
+            guard let weather else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                currentWeather = weather
+                tableView.reloadData()
+            }
+        }
+        
+        Api.shared.fetchSample(WeeklyForecast.self) {
+            forecast in
+            guard let forecast else { return }
+            DispatchQueue.main.async {[weak self] in
+                guard let self else { return }
+                weeklyForecast = forecast
+                tableView.reloadData()
+            }
         }
     }
     
@@ -42,6 +66,7 @@ extension HomeVC: UITableViewDataSource {
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeCarouselRow.id) as! HomeCarouselRow
+                cell.configure(weeklyForecast)
                 return cell
                 
             case 2:

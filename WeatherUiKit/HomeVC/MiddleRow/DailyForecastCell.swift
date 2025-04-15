@@ -14,7 +14,8 @@ class DailyForecastCell: UICollectionViewCell {
     
     static let id = "DailyForecastCell"
     
-    func configure() {
-        
+    func configure(_ item: WeeklyForecastList) {
+        timeLabel.text = item.dt_txt
+        temperatureLabel.text = "\(String(describing: item.main?.temp))°C"
     }
 }
